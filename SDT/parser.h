@@ -129,7 +129,7 @@ Node *buildTree(int nodeNumber, int rhsLength) {
 	// step 1: find a first index with node  in value stack
 	
 	while (i <= sp && valueStack[i] == NULL) i++;		// (1)
-	if (!nodeNumber && i > sp) return NULL;				// (2)
+	if (!nodeNumber && i > sp) return NULL;					// (2)
 	start = i;
 	// step 2: linking brothers
 	while (i <= sp - 1) {
@@ -209,7 +209,7 @@ Node * parser(FILE* sourceFile) {
 			valueStack[sp] = meaningfulToken(token) ? buildNode(token) : NULL;
 			token = scanner(sourceFile);
 		}
-		else if (entry < 0) {				// reduce action 
+		else if (entry < 0) {								// reduce action 
 			ruleNumber = -entry;
 			if (ruleNumber == GOAL_RULE) {		// accept action 
 				return valueStack[sp-1];	
