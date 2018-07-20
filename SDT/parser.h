@@ -1,7 +1,7 @@
 #include "scanner.h"			// using scanner that programmed in the FLT class 
 #include "MiniC.tbl"			// mini C table for appendix A
 
-#define PS_SIZE	200					// size of parsing stack
+#define PS_SIZE	200				// size of parsing stack
 
 #define true	1
 #define false	0
@@ -32,7 +32,7 @@ typedef struct nodeType {
 } Node;
 
 int errcnt = 0;		// 
-int sp;						// stack pointer
+int sp;													// stack pointer
 int stateStack[PS_SIZE];				// state stack
 int symbolStack[PS_SIZE];				// symbol stack
 
@@ -46,7 +46,7 @@ void semantic(int n) {
 }
 
 void printToken(struct tokenType token) {
-	if (token.number == tident)	printf("%s", token.value.id);			// token.value.id
+	if (token.number == tident)	printf("%s", token.value.id);					// token.value.id
 	else if (token.number == tnumber)	printf("%d", token.value.num);	// token.value.num
 	else 				printf("%s", tokenName[token.number]);
 }
@@ -66,6 +66,7 @@ void dumpStack() {
 		printf(" %d", symbolStack[i]);
 	printf("\n");
 }
+
 //
 void errorRecovery(FILE* sourceFile) {
 	tokenType tok;
@@ -76,10 +77,10 @@ void errorRecovery(FILE* sourceFile) {
 
 	while (true) {
 		tok = scanner(sourceFile);
-		if (tok.number == teof) 		exit(1);
-		if (tok.number == tlparen) 	parenthesisCount++;
+		if (tok.number == teof) 					exit(1);
+		if (tok.number == tlparen) 				parenthesisCount++;
 		else if (tok.number == trparen) 	parenthesisCount--;
-		if (tok.number == tlbrace)		braceCount++;
+		if (tok.number == tlbrace)				braceCount++;
 		else if (tok.number == trbrace) 	braceCount--;
 		if ((tok.number == tsemicolon) && (parenthesisCount <= 0) && (braceCount <= 0))
 			break;
