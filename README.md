@@ -1,4 +1,4 @@
-# Mini-C-Compiler-Construction
+# Mini-C Compiler Construction in C
 
 Complier Construction for Mini C Programming Language
 
